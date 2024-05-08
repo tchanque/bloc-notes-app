@@ -1,0 +1,123 @@
+@import "config";
+
+@mixin container {
+  padding: 0.75rem;
+  background: $primary-color;
+  border: solid $third-color;
+  height: 100vh;
+}
+
+@mixin primary-button {
+  background-color: $secondary-color;
+  color: $third-color;
+  border: none;
+  padding: 1rem;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.sidebar {
+  @include container;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &__add-note-btn {
+    @include primary-button;
+    margin: 1rem 2rem;
+  }
+
+  &__preview-div {
+    padding: 1rem 1rem;
+
+    .note-preview {
+      padding-bottom: 4rem; // separate the previews
+      padding-top: 1rem;
+      padding-left: 1rem;
+
+      .note-preview-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        h1 {
+          color: $secondary-color;
+        }
+
+        .delete-btn {
+          @include primary-button;
+          margin-right: 1rem;
+        }
+      }
+
+      p {
+        color: $third-color;
+      }
+    }
+
+    .active {
+      background-color: lighten($primary-color, 10%);
+    }
+  }
+}
+
+.empty-screen {
+  @include container;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    color: $third-color;
+  }
+}
+
+.note-display {
+  @include container;
+
+  .note-html {
+    padding: 1rem;
+    min-height: 300px;
+
+    &__title {
+      color: $secondary-color;
+      margin-bottom: 1rem;
+    }
+
+    &__content {
+      color: $third-color;
+    }
+  }
+
+  .note-markdown {
+    display: flex;
+    flex-direction: column;
+
+    input {
+      background-color: $grey;
+      color: darken($third-color, 10%);
+      padding: 1rem;
+      border: none;
+      margin-bottom: 1rem;
+    }
+
+    textarea {
+      margin-bottom: 1rem;
+      min-height: 100px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+        sans-serif;
+      padding: 1rem;
+    }
+
+    &__save-btn {
+      @include primary-button;
+      max-width: 33%;
+    }
+  }
+}
